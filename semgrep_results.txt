@@ -1,0 +1,31 @@
+$ semgrep scan --config p/python --config p/flask \
+               --config p/security-audit --config p/owasp-top-ten .
+
+Scanning 8 files (only git-tracked) with 1,237 Code rules:
+
+  CODE RULES
+  Scanning 8 files with 1,237 python rules.
+
+  Findings:
+    app.py
+       20  ERROR    avoid_hardcoded_config_SECRET_KEY
+      162  WARNING  user-eval
+      164  ERROR    eval-injection
+      164  WARNING  eval-detected
+      191  ERROR    dangerous-system-call
+      192  WARNING  directly-returned-format-string
+      192  WARNING  raw-html-format (x2)
+      203  ERROR    dangerous-system-call
+      204  WARNING  directly-returned-format-string
+      204  WARNING  raw-html-format (x2)
+      220  WARNING  avoid_app_run_with_bad_host
+      220  WARNING  debug-enabled
+    templates/ticket.html
+       35  WARNING  template-unescaped-with-safe
+    utils.py
+        7  WARNING  insecure-hash-algorithm-md5
+        7  WARNING  md5-used-as-password
+       15  WARNING  insecure-hash-algorithm-md5
+
+  Ran 1,237 rules on 8 files: 18 findings.
+  Elapsed time: 6.4s
